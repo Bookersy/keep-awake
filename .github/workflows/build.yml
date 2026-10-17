@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -21,9 +24,15 @@ jobs:
           gradle-version: 8.11.1
 
       - name: Build debug APK
-        run: gradle assembleDebug
+        run: |
+          gradle assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk KeepAwake.apk
 
-      - uses: actions/upload-artifact@v4
+      # Publish the APK as a plain file (not zipped) on the repo's Releases page.
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
         with:
-          name: KeepAwake-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          tag_name: build-${{ github.run_number }}
+          name: Keep Awake (build ${{ github.run_number }})
+          make_latest: true
+          files: KeepAwake.apk
