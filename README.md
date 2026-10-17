@@ -5,7 +5,7 @@ A Quick Settings button that keeps your screen on indefinitely until you turn it
 ## Get the APK (no computer needed)
 1. Create a new GitHub repository and upload everything in this folder (keep the `.github` folder).
 2. Open the repo's **Actions** tab. The "Build APK" run starts automatically (or tap **Run workflow**).
-3. When it finishes (~3 min), open the run and download **KeepAwake-apk**. Unzip it to get `app-debug.apk`.
+3. When it finishes (~1 min), open the repo's **Releases** and download **KeepAwake.apk**.
 4. Open the APK on your phone and allow installing from that source.
 
 ## Set up
